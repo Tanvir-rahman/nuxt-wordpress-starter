@@ -1,6 +1,6 @@
 <template>
-    <CoreParagraph v-if="block.name === 'core/paragraph'" :block="block"></CoreParagraph>
-    <CoreImage v-if="block.name === 'core/image'" :block="block"></CoreImage>
+    <CoreParagraph v-if="block.name === 'core/paragraph'" :block="block"/>
+    <CoreImage v-if="block.name === 'core/image'" :block="block"/>
     </template>
     
     <script setup>

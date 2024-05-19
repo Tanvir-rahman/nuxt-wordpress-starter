@@ -1,6 +1,13 @@
 <template>
-    <p v-html="block.attributes.content"></p>
+    <p v-html="block.attributes.content"/>
    </template>
+   
+   <script setup>
+   const props = defineProps({
+       block: Object
+   })
+   
+   </script>
    
    <style >
    
@@ -10,10 +17,3 @@
    }
    
    </style>
-   
-   <script setup>
-   const props = defineProps({
-       block: Object
-   })
-   
-   </script>

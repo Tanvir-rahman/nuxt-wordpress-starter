@@ -1,6 +1,7 @@
 <template>
     <NuxtLink :to='post.uri'>
-        <div class="flex 
+        <div
+class="flex 
         items-center 
         bg-gradient-to-r
         from-cyan-500 

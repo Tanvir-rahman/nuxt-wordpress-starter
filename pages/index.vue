@@ -24,9 +24,9 @@ transform(data:any){
 
 <template>
   <div>
-    <TheHeader></TheHeader>
+    <TheHeader/>
     <div class="grid gap-8 grid-cols-1 lg:grid-cols-3 p-6">
-      <Post v-for="post in data" :key="post.uri" :post="post"></Post>
+      <Post v-for="post in data" :key="post.uri" :post="post"/>
     </div>
   </div>
 </template>
