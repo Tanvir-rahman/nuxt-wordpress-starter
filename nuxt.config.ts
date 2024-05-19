@@ -1,7 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxt/devtools", "@nuxtjs/tailwindcss", "@nuxt/eslint"],
+  modules: ["@nuxt/devtools", "@nuxtjs/tailwindcss", "@nuxt/eslint", '@nuxtjs/apollo'],
+  apollo: {
+    clients: {
+      default: {
+        httpEndpoint: "http://localhost:8888/wordpress/graphql",
+      }
+    },
+  },
   ssr: true,
   experimental: {
     payloadExtraction: false,
