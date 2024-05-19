@@ -16,27 +16,13 @@
   </template>
   
   <script setup>
+  import { QUERY_POST_BY_URI } from '~/data/posts'
   
   const route = useRoute()
   const uri = route.params.uri.join('/')
-  
-  const query = gql`
-    query getPostByUri($uri: String!) {
-      nodeByUri(uri: $uri) {
-        ... on Post {
-          id
-          title
-          date
-          content
-          yoastSeoTitle
-          yoastSeoMetaDesc
-        }
-      }
-    }
-  `
-  
+
   const variables = { uri }
-  const { data, loading, error } = await useAsyncQuery(query, variables)
+  const { data, loading, error } = await useAsyncQuery(QUERY_POST_BY_URI, variables)
   
   if (data && data.nodeByUri) {
     useHead({

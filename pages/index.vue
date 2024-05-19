@@ -1,32 +1,27 @@
-<script setup lang="ts">
-const route = useRoute()
-const config = useRuntimeConfig();
-const { data, refresh, pending } = await useFetch(config.public.wordpressUrl, {
-  method: 'get',
-  query: {
-    query: `
-      query NewQuery {
-        posts(first:10){
-          nodes {
-            title
-            date
-            excerpt
-            uri
-          }
-        }
-      }`
-}, 
-transform(data:any){
- return data.data.posts.nodes as Array<Record<'title' | 'date' | 'excerpt' | 'uri', string>>;
-}
-});
-</script>
-
 <template>
   <div>
     <TheHeader/>
-    <div class="grid gap-8 grid-cols-1 lg:grid-cols-3 p-6">
-      <Post v-for="post in data" :key="post.uri" :post="post"/>
+    <div class="container mx-auto p-6">
+      <div v-if="loading" class="text-center">Loading...</div>
+      <div v-if="error" class="text-center text-red-500">An error occurred: {{ error.message }}</div>
+      <div v-if="!loading && !error">
+        <div class="space-y-8">
+          <Post v-for="post in posts" :key="post.id" :post="post" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { QUERY_ALL_POSTS } from '~/data/posts'
+
+const { data, loading, error } = await useAsyncQuery(QUERY_ALL_POSTS)
+const posts = data.value ? data.value.posts.nodes : []
+
+</script>
+
+<style scoped>
+/* Add any scoped styles here */
+</style>
+
